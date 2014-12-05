@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class Application {
 
     public static void main(String[] args) {
-    	System.out.println("- -MAIN START- -\n \n");
+    	System.out.println("- -MAIN START- -\n  \n");
         SpringApplication.run(Application.class, args);
     }
 }
