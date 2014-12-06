@@ -33,6 +33,8 @@ public class HibernateConfigurer {
     
     @Bean
     public DataSource dataSource() {
+    	
+    	System.out.println("\n\n-- HIBERNATE CONFIGURATION DATA SOURCE-- \n\n");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
          
         dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
@@ -44,6 +46,7 @@ public class HibernateConfigurer {
      
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
+    	System.out.println("\n\n-- LOCAL SESSION FACTORY BEAN-- \n\n");
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource((javax.sql.DataSource) dataSource());
         sessionFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
@@ -60,6 +63,7 @@ public class HibernateConfigurer {
      
     @Bean
     public HibernateTransactionManager transactionManager() {
+    	System.out.println("\n\n-- TRANSACTION MANAGER-- \n\n");
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
