@@ -13,10 +13,10 @@ import com.hifi.thattukada.variety.dao.UserDao;
 @Transactional
 public class UserService {
 
-	@Autowired
+	/*@Autowired
 	private UserDao userDao;
 	
 	public List getList(){
 		return userDao.userLogin();
-	}
+	}*/
 }

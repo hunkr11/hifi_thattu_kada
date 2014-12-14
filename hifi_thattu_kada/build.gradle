@@ -14,13 +14,22 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot' 
+apply plugin: 'war'
+//apply plugin: 'jetty'
+
+war {
+    baseName = 'hifi_thattu_kada'
+    version =  '0.0.1'
+}
+
+/*
 
 jar {
     baseName = 'hifi_thattu_kada'
     version = '0.0.1-SNAPSHOT'
-}
+} */
 sourceCompatibility = 1.7
-targetCompatibility = 1.7
+	targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
@@ -34,14 +43,28 @@ dependencies {
    // compile("org.springframework.boot:spring-boot-starter-data-jpa")
    	compile ('org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE')
    	compile ('org.hibernate:hibernate-core:4.3.6.Final')
-   	compile ('org.postgresql:postgresql:9.3-1100-jdbc4')   	
+   	compile ('org.postgresql:postgresql:9.3-1100-jdbc4')   
+   	compile ('commons-dbcp:commons-dbcp:1.4') 	
+   	compile('org.springframework:spring-orm:3.0.6.RELEASE');
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-freemarker")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-social-facebook")
     compile("org.springframework.boot:spring-boot-starter-social-linkedin")
     compile("org.springframework.boot:spring-boot-starter-social-twitter")
+    // providedCompile 'javax.servlet:servlet-api:2.5'
+     //	runtime 'javax.servlet:jstl:1.1.2'
+     
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile 'com.google.code.gson:gson:2.2.4'
+	//compile 'javax.servlet.jsp.jstl:jstl:1.2','taglibs:standard:1.1.2'
+	compile 'javax.servlet:jstl:1.1.2'
+	compile 'taglibs:standard:1.1.2'
+	// providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.8'
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    
+ 
 }
 
 eclipse {

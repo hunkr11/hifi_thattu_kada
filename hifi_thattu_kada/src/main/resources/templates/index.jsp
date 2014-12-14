@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello buddy.. success..!!!
+Just Index
 </body>
 </html>

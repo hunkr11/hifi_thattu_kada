@@ -17,6 +17,10 @@ public class UserEntity {
 	private String usr_email;
 	@Column(name="vc_passwd")
 	private String usr_passwd;
+	
+	public UserEntity(){		
+	}
+	
 	public int getId() {
 		return id;
 	}
