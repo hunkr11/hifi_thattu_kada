@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Just Index
+Just Index inside templates
 </body>
 </html>

@@ -47,14 +47,14 @@ dependencies {
    	compile ('commons-dbcp:commons-dbcp:1.4') 	
    	compile('org.springframework:spring-orm:3.0.6.RELEASE');
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-freemarker")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+   // compile("org.springframework.boot:spring-boot-starter-freemarker")
+   // compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-social-facebook")
     compile("org.springframework.boot:spring-boot-starter-social-linkedin")
     compile("org.springframework.boot:spring-boot-starter-social-twitter")
     // providedCompile 'javax.servlet:servlet-api:2.5'
      //	runtime 'javax.servlet:jstl:1.1.2'
-     
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper") 
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     compile 'com.google.code.gson:gson:2.2.4'
 	//compile 'javax.servlet.jsp.jstl:jstl:1.2','taglibs:standard:1.1.2'
