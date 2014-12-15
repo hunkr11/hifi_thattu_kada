@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hifi.thattukada.config.HibernateConfigurer;
 import com.hifi.thattukada.variety.dao.UserDao;
@@ -22,10 +23,9 @@ public class UserController {
 	/*private final Logger logger ;
 	logger = LoggerFactory.getLogger(UserController.class);
 */
-	 @Autowired
-	    private UserDao userDao;
-	
-	AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+	@Autowired
+	    private UserDao userDao;	
+		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 	
 	@RequestMapping("/login")
 	public List getList(){
@@ -33,6 +33,12 @@ public class UserController {
 		List retunList =  this.userDao.userLogin();
 		System.out.println("/n/n LISt--->>"+retunList);
 		return retunList;
+	}
+	
+	@RequestMapping("/home")
+	public ModelAndView home(){
+		System.out.println("\n \n HOME Controller\n \n");
+		return new ModelAndView("home");
 	}
 	
 	/*@RequestMapping(value="/login")
