@@ -50,6 +50,7 @@ public class HibernateConfigurer extends WebMvcConfigurerAdapter{
   
     @Bean
     public UserDao userDao(SessionFactory sessionFactory){
+    	System.out.println("\n\n --USER DAO BEAN-- \n \n");
     	return new UserDaoImp(sessionFactory);
     }
     
@@ -78,6 +79,7 @@ public class HibernateConfigurer extends WebMvcConfigurerAdapter{
     	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource());
     	sessionBuilder.addAnnotatedClass(UserEntity.class);
     	sessionBuilder.setProperty("hibernate.show_sql", "true");
+    	sessionBuilder.setProperty("entitymanager.packages.to.scan", "com.hifi.thattukada.variety.entity");
     	sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
     	//sessionBuilder.addProperties(hibProperties());
     	return sessionBuilder.buildSessionFactory();
@@ -87,13 +89,23 @@ public class HibernateConfigurer extends WebMvcConfigurerAdapter{
 		   .buildSessionFactory(); */
 	}
     
-    @Autowired
+  /*  @Autowired
     @Bean
 	public HibernateTransactionManager hibTransMan(SessionFactory sessionFactory){
     	System.out.println("\n\n HibernateTransactionManager \n \n");
     	HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		return transactionManager;
-	}
+	} */
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(
+            SessionFactory sessionFactory) {
+    	System.out.println("\n\n HibernateTransactionManager \n \n");
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(
+                sessionFactory);
+     
+        return transactionManager;
+    }
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
     	System.out.println(" \n\n -- CONFIGURATIOn START -- \n \n");
@@ -101,12 +113,12 @@ public class HibernateConfigurer extends WebMvcConfigurerAdapter{
     }
     /*      	with reference to http://fruzenshtein.com/spring-mvc-hibernate-maven-crud/
      */
-    private Properties hibProperties() {
+  /*  private Properties hibProperties() {
         	Properties properties = new Properties();
             properties.put("hibernate.show_sql", "true");
             properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect ");
             return properties;
-    }
+    } */
         
     @Bean
     public InternalResourceViewResolver viewResolver() {

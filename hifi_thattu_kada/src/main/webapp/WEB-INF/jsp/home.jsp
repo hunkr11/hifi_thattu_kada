@@ -86,7 +86,7 @@
 			<div class="social_login">
 				<div class="">
 					<a href="#" class="social_box fb"> <span class="icon"><i
-							class="fa fa-facebook"></i></span> <span class="icon_title">Connect
+							class="fa fa-facebook"></i></span> <span class="icon_title">Conn
 							with Facebook</span>
 
 					</a> <a href="#" class="social_box google"> <span class="icon"><i
@@ -110,10 +110,15 @@
 			</div>
 
 			<!-- Username & Password Login form -->
+			
 			<div class="user_login">
-				<form>
-					<label>Email / Username</label> <input type="text" /> <br /> <label>Password</label>
-					<input type="password" /> <br />
+				<form name="form1" method="post">
+					<label>Email / User Name</label> 
+					<input type="text" name="userName" id="userName"/> 
+					<br /> 
+					<label>Password</label>
+					<input type="password" name="usrPasswd" id="usrPasswd" /> 
+					<br />
 
 					<div class="checkbox">
 						<input id="remember" type="checkbox" /> <label for="remember">Remember
@@ -126,7 +131,7 @@
 								class="fa fa-angle-double-left"></i> Back</a>
 						</div>
 						<div class="one_half last">
-							<a href="#" class="btn btn_red">Login</a>
+							<a href="javascript:formSubmit('login')" class="btn btn_red">Login</a>
 						</div>
 					</div>
 				</form>
@@ -136,7 +141,7 @@
 
 			<!-- Register Form -->
 			<div class="user_register">
-				<form>
+			<!-- 	<form>  -->
 					<label>Full Name</label> <input type="text" /> <br /> <label>Email
 						Address</label> <input type="email" /> <br /> <label>Password</label> <input
 						type="password" /> <br />
@@ -155,7 +160,7 @@
 							<a href="register" class="btn btn_red">Register</a>
 						</div>
 					</div>
-				</form>
+			<!-- 	</form>  -->
 			</div>
 			</section>
 		</div>
@@ -198,6 +203,11 @@
 		});
 
 	})
+	
+	function formSubmit(id){
+		document.form1.action=id;
+		document.form1.submit();
+	}
 </script>
 
 

@@ -5,5 +5,6 @@ import java.util.List;
 import com.hifi.thattukada.variety.vo.UserVO;
 
 public interface UserDao {
-	public List userLogin();
+	public List userList();
+	public boolean userLogin(UserVO userVo);
 }
