@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,7 +89,7 @@
 			<div class="social_login">
 				<div class="">
 					<a href="#" class="social_box fb"> <span class="icon"><i
-							class="fa fa-facebook"></i></span> <span class="icon_title">Conn
+							class="fa fa-facebook"></i></span> <span class="icon_title">Connect
 							with Facebook</span>
 
 					</a> <a href="#" class="social_box google"> <span class="icon"><i
@@ -94,7 +97,7 @@
 							with Google</span>
 					</a>
 				</div>
-
+			
 				<div class="centeredText">
 					<span>Or use your Email address</span>
 				</div>
@@ -112,43 +115,46 @@
 			<!-- Username & Password Login form -->
 			
 			<div class="user_login">
-				<form name="form1" method="post">
+			<!-- 	<form name="form1" method="post">  -->
 					<label>Email / User Name</label> 
-					<input type="text" name="userName" id="userName"/> 
-					<br /> 
+						<input type="text" name="userName" id="userName"/> <br />					 
 					<label>Password</label>
-					<input type="password" name="usrPasswd" id="usrPasswd" /> 
-					<br />
+						<input type="password" name="usrPasswd" id="usrPasswd" /><br />
+					
 
 					<div class="checkbox">
-						<input id="remember" type="checkbox" /> <label for="remember">Remember
-							me on this computer</label>
+						<input id="remember" type="checkbox" /> <label for="remember">Remember me on this computer</label>
 					</div>
 
 					<div class="action_btns">
 						<div class="one_half">
-							<a href="#" class="btn back_btn"><i
-								class="fa fa-angle-double-left"></i> Back</a>
+							<a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a>
 						</div>
 						<div class="one_half last">
 							<a href="javascript:formSubmit('login')" class="btn btn_red">Login</a>
 						</div>
 					</div>
-				</form>
+					<!--	</form>  -->
 
 				<a href="#" class="forgot_password">Forgot password?</a>
 			</div>
 
 			<!-- Register Form -->
 			<div class="user_register">
-			<!-- 	<form>  -->
-					<label>Full Name</label> <input type="text" /> <br /> <label>Email
-						Address</label> <input type="email" /> <br /> <label>Password</label> <input
-						type="password" /> <br />
+			 	<form:form commandName="formname"  action="register" method="post">  
+					<label>Full Name</label> 
+						<form:input id="uvc_user_name" path="uvc_user_name"/> <br /> 
+						 <input type="hidden" name="uvc_user_name" >
+					<label>Email</label> 
+						<form:input id="uvc_email" path="uvc_email"/> <br /> 
+						<input type="hidden" name="uvc_email" >
+					<label>Password</label> 
+						<form:password id="vc_passwd" path="vc_passwd" /> <br />
+						<input type="hidden" name="vc_passwd" >
 
 					<div class="checkbox">
-						<input id="send_updates" type="checkbox" /> <label
-							for="send_updates">Send me occasional email updates</label>
+						<input id="send_updates" name="b_send_updates" type="checkbox" /> 
+						<label for="send_updates">Send me occasional email updates</label>
 					</div>
 
 					<div class="action_btns">
@@ -157,10 +163,10 @@
 								class="fa fa-angle-double-left"></i> Back</a>
 						</div>
 						<div class="one_half last">
-							<a href="register" class="btn btn_red">Register</a>
+							<a href="javascript:formSubmit('register')" class="btn btn_red">Register</a>
 						</div>
 					</div>
-			<!-- 	</form>  -->
+			 	</form:form>  
 			</div>
 			</section>
 		</div>
@@ -205,8 +211,26 @@
 	})
 	
 	function formSubmit(id){
-		document.form1.action=id;
-		document.form1.submit();
+		
+		if(id=="register"){
+		//	document.forms[0].uvc_user_name = document.getElementById("uvc_user_name").value;
+		//	document.forms[0].vc_passwd = document.getElementById("vc_passwd").value;
+		//	document.forms[0].uvc_email = document.getElementById("uvc_email").value;
+		
+			
+			var send_updates = document.getElementById("send_updates").checked;
+			alert('send_updates-->'+send_updates);	
+			var action = document.forms[0].action=id+"?b_sendUpdates="+send_updates;
+			alert('action-->'+action);
+			document.forms[0].submit();
+		}
+		else{
+			document.forms[0].action=id;
+			document.forms[0].submit();
+		}	
+		
+		
+		
 	}
 </script>
 

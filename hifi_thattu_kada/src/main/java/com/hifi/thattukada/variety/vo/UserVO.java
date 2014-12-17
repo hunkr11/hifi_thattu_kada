@@ -5,6 +5,14 @@ int id;
 String user_name;
 String user_password;
 String user_email;
+boolean send_updates;
+
+public boolean isSend_updates() {
+	return send_updates;
+}
+public void setSend_updates(boolean send_updates) {
+	this.send_updates = send_updates;
+}
 public int getId() {
 	return id;
 }

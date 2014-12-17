@@ -68,9 +68,6 @@ public class UserDaoImp implements UserDao{
 		from User where username=?")
 		.setParameter(0, username)
 		.list(); */
-
-
-		
 		
 		String hql = "from UserEntity where uvc_user_name = ? "/* + userVo.getUser_name()  +" and usr_passwd = "+userVo.getUser_password() */;
 		
@@ -83,6 +80,30 @@ public class UserDaoImp implements UserDao{
 		
 		System.out.println("\n \n userLogin RETURN--->>> "+userFlag);
 		return userFlag;
+	}
+	
+	@Override
+	@Transactional
+	public String userRegister(UserVO userVo,UserEntity userEntity){
+		System.out.println("\n\n INSIDE userLogin DAO IMP \n\n");
+		String userMessage = null;
+		System.out.println("VO user Name-->>"+userVo.getUser_name()+"\n EMAIL -->  " + userVo.getUser_email());
+		
+		String hql = "from UserEntity where uvc_email = ? "/* + userVo.getUser_name()  +" and usr_passwd = "+userVo.getUser_password() */;
+		
+		List<UserEntity> query = this.sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,userVo.getUser_email()).list();
+		System.out.println("\n\n usr_query-->>"+query);
+		
+		if (query.size() > 0) {
+			userMessage = "USER ALREADY EXIST";
+		} 
+		else{
+			System.out.println("\n\n ---INSIDE ELSE, CREATING USER--- \n\n");
+			sessionFactory.getCurrentSession().save(userEntity);
+			userMessage = "USER CREATED" ;
+		}
+		
+		return userMessage;
 	}
 
 }

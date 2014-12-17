@@ -3,27 +3,22 @@ package com.hifi.thattukada.variety.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="tbl_user",schema="admn")
+@SequenceGenerator(name="userEntity_Seq",sequenceName="admn.tbl_user_pki_user_id_seq")
 public class UserEntity implements java.io.Serializable{
 
 	@Id	
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="userEntity_Seq")
 	//@Column(name="pki_user_id")
 	private int pki_user_id;
 	
-	public int getPki_user_id() {
-		return pki_user_id;
-	}
-
-	public void setPki_user_id(int pki_user_id) {
-		this.pki_user_id = pki_user_id;
-	}
-
 	//@Column(name="uvc_user_name")
 	private String uvc_user_name;
 	
@@ -33,10 +28,29 @@ public class UserEntity implements java.io.Serializable{
 	//@Column(name="vc_passwd")
 	private String vc_passwd;
 	
+	private boolean b_send_updates;
+		
 	public UserEntity(){		
 		System.out.println("\n\n ENTITY ACTIVATED \n\n");
 	}
+	
+	public boolean isB_send_updates() {
+		return b_send_updates;
+	}
 
+
+	public void setB_send_updates(boolean b_send_updates) {
+		this.b_send_updates = b_send_updates;
+	}
+
+
+	public int getPki_user_id() {
+		return pki_user_id;
+	}
+
+	public void setPki_user_id(int pki_user_id) {
+		this.pki_user_id = pki_user_id;
+	}
 	public String getUvc_user_name() {
 		return uvc_user_name;
 	}
