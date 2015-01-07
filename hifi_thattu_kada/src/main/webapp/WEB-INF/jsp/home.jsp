@@ -113,8 +113,9 @@
 			</div>
 
 			<!-- Username & Password Login form -->
-			
+			<form:form commandName="formname"  action="register" method="post">
 			<div class="user_login">
+			 
 			<!-- 	<form name="form1" method="post">  -->
 					<label>Email / User Name</label> 
 						<input type="text" name="userName" id="userName"/> <br />					 
@@ -141,7 +142,7 @@
 
 			<!-- Register Form -->
 			<div class="user_register">
-			 	<form:form commandName="formname"  action="register" method="post">  
+			 	 
 					<label>Full Name</label> 
 						<form:input id="uvc_user_name" path="uvc_user_name"/> <br /> 
 						 <input type="hidden" name="uvc_user_name" >
@@ -166,8 +167,9 @@
 							<a href="javascript:formSubmit('register')" class="btn btn_red">Register</a>
 						</div>
 					</div>
-			 	</form:form>  
+			 	 
 			</div>
+			</form:form> 
 			</section>
 		</div>
 

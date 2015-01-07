@@ -127,7 +127,7 @@ public class UserController {
 		else
 			System.out.println("\n\n  LOGIn CONTROLLER false \n\n");
 		}
-		return new ModelAndView("home");
+		return new ModelAndView("home", "formname", new UserEntity());
 	}
 	
 	/*@RequestMapping(value="/login")
