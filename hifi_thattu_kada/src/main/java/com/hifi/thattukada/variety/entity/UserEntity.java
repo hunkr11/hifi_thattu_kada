@@ -10,8 +10,8 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="tbl_user",schema="admn")
-@SequenceGenerator(name="userEntity_Seq",sequenceName="admn.tbl_user_pki_user_id_seq")
+@Table(name="tbl_user", schema="admn")
+@SequenceGenerator(name="userEntity_Seq", sequenceName="admn.tbl_user_pki_user_id_seq", schema="admn")
 public class UserEntity implements java.io.Serializable{
 
 	@Id	
@@ -19,7 +19,7 @@ public class UserEntity implements java.io.Serializable{
 	//@Column(name="pki_user_id")
 	private int pki_user_id;
 	
-	//@Column(name="uvc_user_name")
+	@Column
 	private String uvc_user_name;
 	
 	//@Column(name="uvc_email")

@@ -113,7 +113,7 @@
 			</div>
 
 			<!-- Username & Password Login form -->
-			<form:form commandName="formname"  action="register" method="post">
+			<form:form commandName="userEntity"  action="register" method="post">
 			<div class="user_login">
 			 
 			<!-- 	<form name="form1" method="post">  -->

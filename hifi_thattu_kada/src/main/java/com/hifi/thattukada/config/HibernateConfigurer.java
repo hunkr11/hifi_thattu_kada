@@ -32,16 +32,16 @@ import com.hifi.thattukada.variety.entity.UserEntity;
 @EnableWebMvc
 @PropertySources(value = {@PropertySource("classpath:application.properties")})
 
-public class HibernateConfigurer extends WebMvcConfigurerAdapter{
+public class HibernateConfigurer{
 	
-	private static final String PROPERTY_NAME_DATABASE_DRIVER="spring.datasource.driverClassName";	
-	private static final String PROPERTY_NAME_DATABASE_URL="spring.datasource.url";
-	private static final String PROPERTY_NAME_DATABASE_USERNAME="spring.datasource.username";
-	private static final String PROPERTY_NAME_DATABASE_PASSWORD="spring.datasource.password";
+//	private static final String PROPERTY_NAME_DATABASE_DRIVER="spring.datasource.driverClassName";	
+//	private static final String PROPERTY_NAME_DATABASE_URL="spring.datasource.url";
+//	private static final String PROPERTY_NAME_DATABASE_USERNAME="spring.datasource.username";
+//	private static final String PROPERTY_NAME_DATABASE_PASSWORD="spring.datasource.password";
 	
-	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.hifi.thattukada.variety.entity";
+//	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
+ //   private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+ //   private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.hifi.thattukada.variety.entity";
 
     
     @Resource
@@ -106,28 +106,7 @@ public class HibernateConfigurer extends WebMvcConfigurerAdapter{
      
         return transactionManager;
     }
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-    	System.out.println(" \n\n -- CONFIGURATIOn START -- \n \n");
-        configurer.enable();
-    }
-    /*      	with reference to http://fruzenshtein.com/spring-mvc-hibernate-maven-crud/
-     */
-  /*  private Properties hibProperties() {
-        	Properties properties = new Properties();
-            properties.put("hibernate.show_sql", "true");
-            properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect ");
-            return properties;
-    } */
-        
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-    	System.out.println(" \n\n -- ADDING VIEW RESOLVER -- \n \n");
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
+    
     
     
     /*

@@ -16,3 +16,6 @@ create table admn.tbl_user(
 select schema_name from information_schema.schemata;
 -- to retrive all the tables from schema
 select * from information_schema.tables where table_schema='admn';
+--Creating Sequence for incrementing by 1
+create SEQUENCE userEntity_Seq start with 1 increment by 1;
+
