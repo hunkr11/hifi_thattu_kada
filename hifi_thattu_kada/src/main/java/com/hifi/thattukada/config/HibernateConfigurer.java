@@ -90,7 +90,7 @@ public class HibernateConfigurer{
 	}
     
   /*  @Autowired
-    @Bean
+    @Bean  // bean name should be transactionManager
 	public HibernateTransactionManager hibTransMan(SessionFactory sessionFactory){
     	System.out.println("\n\n HibernateTransactionManager \n \n");
     	HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
@@ -98,12 +98,9 @@ public class HibernateConfigurer{
 	} */
     @Autowired
     @Bean(name = "transactionManager")
-    public HibernateTransactionManager getTransactionManager(
-            SessionFactory sessionFactory) {
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
     	System.out.println("\n\n HibernateTransactionManager \n \n");
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager(
-                sessionFactory);
-     
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);     
         return transactionManager;
     }
     

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hifi.thattukada.config.HibernateConfigurer;
 import com.hifi.thattukada.variety.dao.UserDao;
 import com.hifi.thattukada.variety.entity.UserEntity;
+import com.hifi.thattukada.variety.pojo.UserDetailsPojo;
 import com.hifi.thattukada.variety.vo.UserVO;
 
 @Controller
@@ -34,12 +36,19 @@ public class UserController {
 */
 	@Autowired
 	    private UserDao userDao;	
+	
+	private static final Logger logger = Logger
+	        .getLogger(UserController.class);
+	
+//	@Autowired 
+//		private UserDetailsPojo userPojo;
 	//	AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 	
 	 @RequestMapping(value="/",method = RequestMethod.GET)
 	 public ModelAndView indexPage(){
 		 System.out.println("\n\n --USER CONTROLLER STARTED-- \n\n");
-		 return new ModelAndView("index");
+		// return new ModelAndView("index");
+		 return new ModelAndView("home");
 	 }
 	 
 	 
@@ -55,16 +64,22 @@ public class UserController {
 //	public ModelAndView home(Model m){
 //		System.out.println("\n \n HOME Controller\n \n");
 //		ModelAndView modelAndView = new ModelAndView("home");
-//		// modelAndView.addObject("userEntity", new UserEntity());
+////		// modelAndView.addObject("userEntity", new UserEntity());
 //		m.addAttribute("userEntity",new UserEntity());
 //		return modelAndView;
 //	}
-	public ModelAndView home(){
-		return new ModelAndView("home", "userEntity", new UserEntity());
+	public ModelAndView home(@Valid UserDetailsPojo logpo ,BindingResult br){
+		System.out.println("\n \n HOME Controller\n \n");
+		ModelAndView mav = new ModelAndView("home", "userPojo", new UserDetailsPojo());
+		 
+		if(br.hasErrors()){
+	         mav.setViewName("error");
+	    }
+		return mav;
 	}
 	
 	@RequestMapping(value="/register",method = RequestMethod.POST)
-	public ModelAndView userRegister(@ModelAttribute("userEntity") UserEntity userEntity , HttpServletRequest request, BindingResult result,Model m) {
+	public ModelAndView userRegister(@ModelAttribute("userPojo") UserEntity userEntity , HttpServletRequest request, BindingResult result,Model m) {
 		System.out.println("\n \n REGISTER Controller\n \n");
 		
 		// System.out.println(userEntity.getUvc_email());
@@ -130,7 +145,7 @@ public class UserController {
 		System.out.println("USER LIST-->>"+userList);*/
 		userLoginFlag = this.userDao.userLogin(userVo);
 		if(userLoginFlag)
-		System.out.println("\n\n  LOGIn CONTROLLER TRUE \n\n");
+			System.out.println("\n\n  LOGIn CONTROLLER TRUE \n\n");
 		else
 			System.out.println("\n\n  LOGIn CONTROLLER false \n\n");
 		}

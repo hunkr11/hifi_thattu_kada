@@ -69,9 +69,10 @@ public class UserDaoImp implements UserDao{
 		.setParameter(0, username)
 		.list(); */
 		
-		String hql = "from UserEntity where uvc_user_name = ? "/* + userVo.getUser_name()  +" and usr_passwd = "+userVo.getUser_password() */;
+		String hql = "from UserEntity where uvc_email = ?  and usr_passwd = ? ";
 		
-		List<UserEntity> query = this.sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,userVo.getUser_name()).list();
+		List<UserEntity> query = this.sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,userVo.getUser_name()).setParameter(1, userVo.getUser_password()).list();
+		
 		System.out.println("\n\n usr_query-->>"+query);
 		
 		if (query.size() > 0) {
