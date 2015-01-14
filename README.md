@@ -1,6 +1,6 @@
 # hifi_thattu_kada
-TITLE		: HIFI_THATTU_KADA
-DEVELOPER	: SIVA ANAND K S
+TITLE		: HIFI_THATTU_KADA, 
+DEVELOPER	: SIVA ANAND K S, 
 TOOLS USED	: Spring Boot, gradle, war package, apache in build server, github repository, postgre sql, hibernate, tiles 2.2.2
 
 Work Flow:
